@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luźna Guma - dokumenty DOJ</title>
+  <meta name="description" content="Luźna Guma (unspec edition): generator dokumentów Department of Justice - akt oskarżenia, nakaz przeszukania i aresztowania, umowa sprzedaży pojazdu.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='16 0 240 258'%3E%3Cg transform='rotate(-8 128 129)'%3E%3Cpath fill='%2304045e' d='M 128 12 L 176 25 L 224 96 L 224 140 Q 224 204 128 246 Q 32 204 32 140 L 32 38 Z'/%3E%3Cpath fill='%23f0c040' transform='rotate(12 194 62) translate(5 -5)' d='M178.7 36.2 L213.4 87.4 L174.5 71.8 Z'/%3E%3Cpath fill='%23fff' d='M90.9 63.7 L167.4 63.7 L188.3 84.6 L188.3 91.5 L104.8 91.5 L95.5 100.8 L95.5 147.2 L104.8 156.5 L128 156.5 L128 114.7 L188.3 114.7 L188.3 161.1 L165.1 184.3 L90.9 184.3 L67.7 161.1 L67.7 86.9 Z'/%3E%3Cpath fill='%2304045e' d='M158.2 127.5 L162.6 141.1 L176.9 141.1 L165.3 149.5 L169.8 163.2 L158.2 154.7 L146.6 163.2 L151 149.5 L139.4 141.1 L153.7 141.1 Z'/%3E%3Cpath fill='%23fff' d='M158.2 132.6 L161.4 142.7 L172 142.7 L163.5 148.9 L166.7 159 L158.2 152.8 L149.6 159 L152.9 148.9 L144.3 142.7 L154.9 142.7 Z'/%3E%3C/g%3E%3Cpath fill='%23f0c040' stroke='%23fff' stroke-width='5' stroke-linejoin='round' transform='translate(206 212) rotate(24) scale(2.1) translate(-158.2 -147.1)' d='M158.2 127.5 L162.6 141.1 L176.9 141.1 L165.3 149.5 L169.8 163.2 L158.2 154.7 L146.6 163.2 L151 149.5 L139.4 141.1 L153.7 141.1 Z'/%3E%3C/svg%3E">
+
+  <!-- Theme before paint (no flash) -->
+  <script>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem("luzna-guma:theme"); } catch (e) {}
+      var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (dark) document.documentElement.classList.add("dark");
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            // Dark theme (GUMA Tools palette)
+            navy: "#04045e",
+            "navy-2": "#0a0a72",
+            panel: "#16213e",
+            "panel-2": "#1a2a4a",
+            field: "#0f3460",
+            gold: "#f0c040",
+            "gold-d": "#c8960c",
+            line: "#2a2a5a",
+            // Light theme
+            ink: "#0f0f3a",
+            "l-bg": "#eef2f9",
+            "l-panel": "#ffffff",
+            "l-panel-2": "#f3f6fb",
+            "l-field": "#f5f8fc",
+            "l-line": "#d4dceb",
+            "l-accent": "#2d4787",
+            "l-muted": "#5a5e7a",
+          },
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+            sig: ['"Dancing Script"', "cursive"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* The loose GUMA shield: wobbles on hover, the fallen star hops */
+    .lg-shield, .lg-star { transform-box: fill-box; transform-origin: 50% 50%; }
+    .lg-logo:hover .lg-shield { animation: lg-wobble .8s ease-in-out infinite; }
+    .lg-logo:hover .lg-star { animation: lg-hop .8s ease-in-out infinite; }
+    .lg-tilt { display: inline-block; transform: rotate(-3deg) translateY(1px); }
+    @keyframes lg-wobble {
+      0%, 100% { transform: rotate(0) scale(1); }
+      30% { transform: rotate(5deg) scale(1.03, .97); }
+      60% { transform: rotate(-4deg) scale(.98, 1.03); }
+    }
+    @keyframes lg-hop {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      35% { transform: translateY(-22px) rotate(-40deg); }
+      65% { transform: translateY(0) rotate(12deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lg-logo:hover .lg-shield, .lg-logo:hover .lg-star { animation: none; }
+    }
+    @page { size: A4; margin: 16mm; }
+  </style>
+</head>
+
+<body class="min-h-screen bg-l-bg text-ink antialiased dark:bg-navy dark:text-[#eeeeee] font-sans print:bg-white">
+
+  <!-- ── Header ─────────────────────────────────────────────────────── -->
+  <header class="print:hidden sticky top-0 z-30 border-b border-l-line bg-l-bg/85 backdrop-blur-md dark:border-line dark:bg-navy/85">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <a href="./" class="lg-logo flex items-center gap-3 rounded-xl py-1 pr-2" aria-label="Luźna Guma - strona główna">
+        <!-- The GUMA Tools shield, loosened: tilted, gold corner peeling off,
+             star fallen out of its socket in the G -->
+        <svg viewBox="16 0 240 258" class="h-12 w-12 shrink-0 overflow-visible" aria-hidden="true">
+          <g class="lg-shield">
+            <g transform="rotate(-8 128 129)">
+              <path class="fill-navy dark:fill-white" d="M 128 12 L 176 25 L 224 96 L 224 140 Q 224 204 128 246 Q 32 204 32 140 L 32 38 Z"/>
+              <path class="fill-gold" transform="rotate(12 194 62) translate(5 -5)" d="M178.7 36.2 L213.4 87.4 L174.5 71.8 Z"/>
+              <path class="fill-white dark:fill-navy" d="M90.9 63.7 L167.4 63.7 L188.3 84.6 L188.3 91.5 L104.8 91.5 L95.5 100.8 L95.5 147.2 L104.8 156.5 L128 156.5 L128 114.7 L188.3 114.7 L188.3 161.1 L165.1 184.3 L90.9 184.3 L67.7 161.1 L67.7 86.9 Z"/>
+              <path class="fill-navy dark:fill-white" d="M158.2 127.5 L162.6 141.1 L176.9 141.1 L165.3 149.5 L169.8 163.2 L158.2 154.7 L146.6 163.2 L151 149.5 L139.4 141.1 L153.7 141.1 Z"/>
+              <path class="fill-white dark:fill-navy" d="M158.2 132.6 L161.4 142.7 L172 142.7 L163.5 148.9 L166.7 159 L158.2 152.8 L149.6 159 L152.9 148.9 L144.3 142.7 L154.9 142.7 Z"/>
+            </g>
+          </g>
+          <g transform="translate(206 212)"><g class="lg-star">
+            <path class="fill-gold stroke-l-bg dark:stroke-navy" stroke-width="5" stroke-linejoin="round"
+              transform="rotate(24) scale(2.1) translate(-158.2 -147.1)"
+              d="M158.2 127.5 L162.6 141.1 L176.9 141.1 L165.3 149.5 L169.8 163.2 L158.2 154.7 L146.6 163.2 L151 149.5 L139.4 141.1 L153.7 141.1 Z"/>
+          </g></g>
+        </svg>
+        <span class="leading-none">
+          <span class="block text-xl font-extrabold tracking-tight">
+            Luźna <span class="lg-tilt text-l-accent dark:text-gold">Guma</span>
+          </span>
+          <span class="mt-1 block text-[11px] font-semibold uppercase tracking-[0.18em] text-l-muted dark:text-white/50">unspec edition · DOJ</span>
+        </span>
+      </a>
+
+      <button id="themeBtn" type="button" aria-label="Przełącz motyw jasny / ciemny"
+        class="grid h-10 w-10 place-items-center rounded-xl border border-l-line bg-l-panel text-l-accent transition hover:bg-l-panel-2 dark:border-line dark:bg-panel dark:text-gold dark:hover:bg-panel-2">
+        <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main ───────────────────────────────────────────────────────── -->
+  <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 print:max-w-none print:p-0">
+    <nav id="tabs" role="tablist" aria-label="Rodzaj dokumentu" class="print:hidden flex flex-wrap gap-2"></nav>
+
+    <div class="mt-5 grid gap-6 lg:grid-cols-[minmax(0,450px)_minmax(0,1fr)] print:mt-0 print:block">
+
+      <!-- Form -->
+      <section aria-label="Dane dokumentu" class="print:hidden min-w-0 self-start rounded-2xl border border-l-line bg-l-panel p-4 shadow-sm sm:p-5 dark:border-line dark:bg-panel">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <h2 class="text-base font-bold">Dane dokumentu</h2>
+          <div class="flex gap-2">
+            <button id="demoBtn" type="button" class="rounded-lg border border-l-line px-3 py-1.5 text-xs font-semibold text-l-accent transition hover:bg-l-panel-2 dark:border-line dark:text-gold dark:hover:bg-panel-2">Przykład</button>
+            <button id="clearBtn" type="button" class="rounded-lg border border-l-line px-3 py-1.5 text-xs font-semibold text-l-muted transition hover:border-red-400 hover:text-red-600 dark:border-line dark:text-white/60 dark:hover:border-red-400 dark:hover:text-red-300">Wyczyść</button>
+          </div>
+        </div>
+        <div id="form" class="grid grid-cols-2 gap-3"></div>
+      </section>
+
+      <!-- Preview -->
+      <section aria-label="Podgląd dokumentu" class="min-w-0">
+        <div class="print:hidden sticky top-[69px] z-20 -mx-1 mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl bg-l-bg/90 px-1 py-2 backdrop-blur dark:bg-navy/90">
+          <p class="text-xs text-l-muted dark:text-white/55">Podgląd na żywo · dane zapisują się w tej przeglądarce</p>
+          <div class="flex gap-2">
+            <button id="printBtn" type="button" class="flex items-center gap-2 rounded-lg border border-l-line bg-l-panel px-3 py-2 text-sm font-semibold transition hover:bg-l-panel-2 dark:border-line dark:bg-panel dark:hover:bg-panel-2">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Drukuj / PDF
+            </button>
+            <button id="copyBtn" type="button" class="flex items-center gap-2 rounded-lg bg-l-accent px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-l-accent/90 dark:bg-gold dark:text-navy dark:hover:bg-gold-d">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Kopiuj do Google Docs
+            </button>
+          </div>
+        </div>
+
+        <article id="doc" class="mx-auto w-full max-w-[794px] rounded-sm bg-white px-6 py-8 text-black shadow-xl ring-1 ring-black/5 sm:px-[64px] sm:py-[60px] print:max-w-none print:p-0 print:shadow-none print:ring-0"></article>
+      </section>
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <footer class="print:hidden mx-auto max-w-7xl px-4 pb-8 pt-4 text-center text-xs text-l-muted sm:px-6 dark:text-white/50">
+    Luźna Guma · unspec edition · by
+    <a id="gumaLink" href="https://damijjj.github.io/GUMA-tools/" target="_blank" rel="noopener"
+       class="font-semibold text-l-accent underline-offset-4 hover:underline dark:text-gold">GUMA Tools</a>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"
+       class="print:hidden pointer-events-none fixed inset-x-0 bottom-6 z-50 mx-auto w-fit max-w-[calc(100%-32px)] translate-y-4 rounded-xl px-4 py-3 text-sm font-semibold opacity-0 shadow-lg transition duration-300"></div>
+
+<script>
+// ── Constants ──────────────────────────────────────────────────────
+const STORE_KEY = "luzna-guma:v1";
+const THEME_KEY = "luzna-guma:theme";
+
+const FONTS = {
+  arial: "Arial, Helvetica, sans-serif",
+  times: "'Times New Roman', Times, serif",
+  georgia: "Georgia, 'Times New Roman', serif",
+};
+
+const DEFAULT_QUALIFICATION =
+  "Na podstawie zgromadzonego materiału dowodowego prokuratura stwierdza, iż zgodnie z przepisami Penal Code stanu San Andreas przedstawione dowody wskazują na popełnienie przestępstwa, które kwalifikuje się do wymierzenia kary adekwatnej do popełnionych przez oskarżonego czynów.";
+const DEFAULT_PAY_TERMS =
+  "Zapłata następuje w sposób uzgodniony między stronami w chwili zawarcia umowy.";
+const DEFAULT_AGENCIES = "LSPD, BCSO oraz innych uprawnionych organów";
+
+// ── Small helpers ──────────────────────────────────────────────────
+const $ = (sel) => document.querySelector(sel);
+const pad = (n) => String(n).padStart(2, "0");
+const clone = (o) => JSON.parse(JSON.stringify(o));
+
+function todayIso() {
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+}
+
+/** "2026-10-12" -> "12.10.2026" (or with another separator). */
+function fmtDate(iso, sep = ".") {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return [d, m, y].join(sep);
+}
+
+/** "500000" -> "500 000$"; returns "" for empty / invalid input. */
+function money(v) {
+  const raw = String(v ?? "").replace(/[^\d]/g, "");
+  if (!raw) return "";
+  return String(Number(raw)).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + "$";
+}
+
+const filled = (arr, ...keys) => (arr || []).filter((it) => keys.some((k) => String(it[k] ?? "").trim()));
+const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/** Join a list Polish-style: "a, b oraz c". */
+function joinPl(parts) {
+  if (parts.length < 2) return parts.join("");
+  return parts.slice(0, -1).join(", ") + " oraz " + parts[parts.length - 1];
+}
+
+// ── Document building blocks (inline styles survive a paste into Google Docs) ──
+const BLANK = '<span style="color:#9a9a9a;">....................</span>';
+const val = (v) => (String(v ?? "").trim() ? esc(v) : BLANK);
+
+function base(extra = "") {
+  const font = FONTS[state.common.font] || FONTS.arial;
+  return `font-family:${font};font-size:11pt;line-height:1.45;color:#000000;margin:0 0 6px 0;${extra}`;
+}
+const p = (html, extra = "") => `<p style="${base(extra)}">${html}</p>`;
+const hr = () => '<hr style="border:none;border-top:1px solid #8a8a8a;margin:14px 0;">';
+const heading = (t) => p(`<b>${t}</b>`, "font-size:12.5pt;margin:2px 0 8px 0;");
+const kv = (label, v) => p(`<b>${esc(label)}:</b> ${val(v)}`, "margin:0 0 3px 0;");
+const sig = (name) =>
+  `<span style="font-family:'Dancing Script',cursive;font-size:18pt;line-height:1.2;">${val(name)}</span>`;
+
+/** Ordered / unordered list; items are already-escaped HTML strings. */
+function list(items, ordered = false) {
+  if (!items.length) return "";
+  const tag = ordered ? "ol" : "ul";
+  // Explicit list-style: Tailwind's preflight resets it, and Google Docs reads it on paste
+  const marker = `list-style-type:${ordered ? "decimal" : "disc"};`;
+  const li = items.map((i) => `<li style="${base("margin:0 0 4px 0;" + marker)}">${i}</li>`).join("");
+  return `<${tag} style="${base("padding-left:26px;" + marker)}">${li}</${tag}>`;
+}
+
+/** Free text -> paragraphs (blank line = new paragraph, newline = <br>). */
+function paras(text) {
+  const t = String(text ?? "").trim();
+  if (!t) return p(BLANK);
+  return t.split(/\n\s*\n/).map((chunk) => p(esc(chunk).replace(/\n/g, "<br>"), "text-align:justify;")).join("");
+}
+
+function section(title, body) {
+  return hr() + (title ? heading(title) : "") + body;
+}
+
+function docHeader(title, dateIso) {
+  return (
+    p("SAN ANDREAS", "text-align:center;font-size:10pt;letter-spacing:4px;margin:0;color:#333333;") +
+    p("<b>Department of Justice</b>", "text-align:center;font-size:20pt;margin:0 0 2px 0;") +
+    hr() +
+    p(`State San Andreas, ${val(fmtDate(dateIso))}`, "text-align:right;") +
+    p(`<b>${esc(title)}</b>`, "text-align:center;font-size:17pt;margin:16px 0 6px 0;")
+  );
+}
+
+// ── Indictment helpers ─────────────────────────────────────────────
+function autoCaseNo(d) {
+  const initials = String(d.name || "").trim().split(/\s+/).filter(Boolean)
+    .slice(0, 2).map((w) => w[0].toUpperCase()).join("") || "XX";
+  const seq = pad(String(d.caseSeq || "1").replace(/\D/g, "") || 1);
+  const [y, m, day] = (d.date || todayIso()).split("-");
+  return `${initials}-${seq}-${day}${m}/${y.slice(2)}`;
+}
+
+function chargeLine(ch) {
+  const art = String(ch.art || "").trim();
+  const par = String(ch.par || "").trim();
+  const lit = String(ch.lit || "").trim();
+  const code = esc(state.common.codeName || "Penal Code");
+  const ref = `Art. ${esc(art) || "..."}${par ? ` § ${esc(par)}` : ""}${lit ? ` lit. ${esc(lit)}` : ""} ${code}`;
+  return `<b>${ref}</b>${ch.desc ? ` - ${esc(ch.desc)}` : ""}`;
+}
+
+function sentenceLine(d) {
+  const parts = [];
+  const months = String(d.months || "").replace(/\D/g, "");
+  if (months) {
+    const unit = Number(months) === 1 ? "miesiąca" : "miesięcy";
+    parts.push(`wymierzenie kary ${months} ${unit} bezwzględnego pozbawienia wolności` +
+      (d.noEarly ? " bez możliwości ubiegania się o wcześniejsze opuszczenie zakładu penitencjarnego" : ""));
+  }
+  const fines = filled(d.fines, "amount").map((f) =>
+    `${money(f.amount)}${String(f.who || "").trim() ? ` na rzecz ${esc(f.who)}` : ""}`);
+  if (fines.length) parts.push(`nałożenie grzywny w wysokości ${joinPl(fines)}`);
+  return parts.length ? capitalize(parts.join(", ")) : "";
+}
+
+// ── Warrant helpers ────────────────────────────────────────────────
+const WARRANT_TYPES = {
+  both: { title: "Nakaz Przeszukania i Aresztowania", noun: "przeszukania i aresztowania" },
+  arrest: { title: "Nakaz Aresztowania", noun: "aresztowania" },
+  search: { title: "Nakaz Przeszukania", noun: "przeszukania" },
+};
+
+// ── Document definitions ───────────────────────────────────────────
+// Each document: tab label, blank state, demo state, form schema, render.
+// Form field: { key, label, type, half, span, rows, ph, hint, options, show, common }
+// List field: { key, label, type: "list", add, item: [subfields] }
+
+const PROSECUTOR_FIELDS = [
+  { section: "Prokurator (zapamiętywany dla wszystkich dokumentów)" },
+  { key: "prosecutor", label: "Imię i nazwisko", common: true, half: true, ph: "np. Thomas Lorenzo" },
+  { key: "title", label: "Stanowisko", common: true, half: true },
+];
+
+const LOOK_FIELDS = [
+  { section: "Wygląd" },
+  { key: "font", label: "Czcionka dokumentu", type: "select", common: true,
+    options: [["arial", "Arial (domyślna Google Docs)"], ["times", "Times New Roman"], ["georgia", "Georgia"]] },
+];
+
+const DOCS = {
+  // ── Akt Oskarżenia ──
+  indictment: {
+    tab: "Akt Oskarżenia",
+    blank: () => ({
+      date: todayIso(), caseSeq: "01", caseNo: "", represents: "Department of Justice",
+      name: "", address: "", ssn: "",
+      charges: [{ art: "", par: "", lit: "", desc: "" }],
+      narrative: "",
+      evidence: [{ text: "" }],
+      witnesses: [],
+      qualification: DEFAULT_QUALIFICATION,
+      months: "", noEarly: false,
+      fines: [{ amount: "", who: "DOJ" }],
+      requests: [],
+      info: [],
+    }),
+    demo: () => ({
+      date: todayIso(), caseSeq: "01", caseNo: "", represents: "Department of Justice",
+      name: "Marco Valenti", address: "Apartamenty Alta Street, Los Santos", ssn: "4412",
+      charges: [
+        { art: "3", par: "4", lit: "", desc: "Pokonywanie zabezpieczeń bez uprawnień w celu dostania się do pojazdu lub pomieszczenia" },
+        { art: "3", par: "6", lit: "", desc: "Paserstwo: przechowywanie i posiadanie przedmiotów powstałych w wyniku przestępstwa przeciwko mieniu" },
+        { art: "9", par: "6", lit: "", desc: "Nielegalne posiadanie broni palnej i amunicji" },
+        { art: "9", par: "7", lit: "", desc: "Użycie nielegalnej broni do popełnienia przestępstwa" },
+      ],
+      narrative:
+        "Oskarża się Marco Valenti o to, że w dniu 02.11.2026 r. około godz. 21:40, działając wspólnie i w porozumieniu z nieustalonymi osobami, włamał się do salonu jubilerskiego Vangelico przy Portola Drive w Rockford Hills, pokonując zabezpieczenia drzwi zaplecza. Grożąc pracownikom nielegalnie posiadanym pistoletem Pistol Mk2, zabrał biżuterię o łącznej wartości 184 000$, a następnie zbiegł pojazdem marki Karin Sultan RS (nr rej. 82LQK117).\n\nCzęść skradzionej biżuterii zabezpieczono podczas przeszukania garażu oskarżonego przy Grove Street, gdzie ujawniono również narzędzia do pokonywania zabezpieczeń oraz amunicję kalibru 9 mm.",
+      evidence: [
+        { text: "Raport LSPD z zabezpieczenia miejsca zdarzenia (salon Vangelico) z dnia 02.11.2026 r." },
+        { text: "Nagrania z monitoringu salonu Vangelico oraz kamer miejskich na Portola Drive" },
+        { text: "Protokół przeszukania garażu oskarżonego przy Grove Street wraz z listą zabezpieczonych przedmiotów" },
+        { text: "Opinia balistyczna dotycząca zabezpieczonego pistoletu Pistol Mk2" },
+      ],
+      witnesses: [
+        { name: "Detektyw Rachel Moore", role: "prowadząca śledztwo" },
+        { name: "Ethan Brooks", role: "pracownik salonu Vangelico" },
+      ],
+      qualification: DEFAULT_QUALIFICATION,
+      months: "240", noEarly: false,
+      fines: [
+        { amount: "150000", who: "DOJ" },
+        { amount: "50000", who: "LSPD w ramach pokrycia kosztów śledztwa" },
+      ],
+      requests: [{ text: "Przepadek zabezpieczonej biżuterii na rzecz pokrzywdzonego salonu Vangelico" }],
+      info: [{ text: "Oskarżony był wcześniej karany za kradzieże pojazdów z włamaniem." }],
+    }),
+    form: [
+      ...PROSECUTOR_FIELDS,
+      { section: "Dokument" },
+      { key: "date", label: "Data", type: "date", half: true },
+      { key: "caseSeq", label: "Nr kolejny sprawy", half: true, ph: "01" },
+      { key: "caseNo", label: "Sygnatura akt", auto: "caseNo", hint: "Zostaw puste, a sygnatura złoży się sama z inicjałów oskarżonego, numeru i daty." },
+      { key: "represents", label: "Reprezentujący" },
+      { section: "Oskarżony" },
+      { key: "name", label: "Imię i nazwisko" },
+      { key: "address", label: "Adres zamieszkania", half: true },
+      { key: "ssn", label: "SSN", half: true },
+      { section: "Zarzuty" },
+      { key: "codeName", label: "Nazwa kodeksu", common: true, half: true },
+      { key: "charges", label: "Zarzuty", type: "list", add: "Dodaj zarzut", item: [
+        { key: "art", label: "Art.", span: 2 },
+        { key: "par", label: "§", span: 2 },
+        { key: "lit", label: "lit.", span: 2 },
+        { key: "desc", label: "Opis", type: "textarea", rows: 2 },
+      ] },
+      { key: "narrative", label: "Zarzuty obejmują (opis czynu)", type: "textarea", rows: 7,
+        ph: "Oskarża się ... o to, że w dniu ..." },
+      { section: "Dowody" },
+      { key: "evidence", label: "Dowody", type: "list", add: "Dodaj dowód", item: [
+        { key: "text", label: "Dowód", type: "textarea", rows: 2 },
+      ] },
+      { key: "witnesses", label: "Świadkowie", type: "list", add: "Dodaj świadka", item: [
+        { key: "name", label: "Imię i nazwisko", span: 3 },
+        { key: "role", label: "Rola (opcjonalnie)", span: 3 },
+      ] },
+      { section: "Kwalifikacja prawna czynu" },
+      { key: "qualification", label: "Treść", type: "textarea", rows: 4 },
+      { section: "Wnioski" },
+      { key: "months", label: "Kara (miesiące)", type: "number", half: true },
+      { key: "noEarly", label: "Bez możliwości wcześniejszego zwolnienia", type: "checkbox" },
+      { key: "fines", label: "Grzywny / świadczenia", type: "list", add: "Dodaj grzywnę", item: [
+        { key: "amount", label: "Kwota ($)", span: 2 },
+        { key: "who", label: "Na rzecz", span: 4 },
+      ] },
+      { key: "requests", label: "Dodatkowe wnioski", type: "list", add: "Dodaj wniosek", item: [
+        { key: "text", label: "Wniosek", type: "textarea", rows: 2 },
+      ] },
+      { section: "Dodatkowe informacje" },
+      { key: "info", label: "Informacje", type: "list", add: "Dodaj informację", item: [
+        { key: "text", label: "Informacja", type: "textarea", rows: 2 },
+      ] },
+      ...LOOK_FIELDS,
+    ],
+    render(d, c) {
+      const charges = filled(d.charges, "art", "desc");
+      const caseNo = String(d.caseNo || "").trim() || autoCaseNo(d);
+
+      const evidence = filled(d.evidence, "text").map((e) => esc(e.text));
+      const witnesses = filled(d.witnesses, "name")
+        .map((w) => `${esc(w.name)}${String(w.role || "").trim() ? ` (${esc(w.role)})` : ""}`);
+      if (witnesses.length) evidence.push("Zeznania świadków:" + list(witnesses));
+
+      const requests = [sentenceLine(d), ...filled(d.requests, "text").map((r) => esc(r.text))].filter(Boolean);
+      const info = filled(d.info, "text").map((i) => esc(i.text));
+
+      return (
+        docHeader("Akt Oskarżenia", d.date) +
+        p(`Sygnatura akt: <b>[${esc(caseNo)}]</b>`, "text-align:center;") +
+        section("",
+          p("<b>Prokurator</b>") +
+          kv("Imię i nazwisko prokuratora", c.prosecutor) +
+          kv("Reprezentujący", d.represents) +
+          p("<b>Oskarżony</b>", "margin-top:12px;") +
+          kv("Imię i nazwisko", d.name) +
+          kv("Adres zamieszkania", d.address) +
+          kv("SSN", d.ssn)) +
+        section("Opis zarzutów",
+          p(`Oskarżonemu ${val(d.name)} zarzuca się popełnienie ${charges.length > 1 ? "przestępstw" : "przestępstwa"} z:`) +
+          (list(charges.map(chargeLine)) || p(BLANK)) +
+          (String(d.narrative || "").trim() ? p("<b>Zarzuty obejmują:</b>", "margin-top:12px;") + paras(d.narrative) : "")) +
+        section("Dowody",
+          p("W celu potwierdzenia zarzutów prokuratura przedstawia następujące dowody:") +
+          (list(evidence, true) || p(BLANK))) +
+        section("Kwalifikacja prawna czynu", paras(d.qualification)) +
+        section("Wnioski",
+          p("W związku z powyższym wnoszę o:") + (list(requests) || p(BLANK))) +
+        section("Podpis",
+          p(sig(c.prosecutor), "margin:4px 0 0 0;") +
+          p(val(c.title), "margin:0;") +
+          p(val(fmtDate(d.date)))) +
+        (info.length ? section("Dodatkowe informacje", list(info)) : "")
+      );
+    },
+  },
+
+  // ── Nakaz Przeszukania i Aresztowania ──
+  warrant: {
+    tab: "Nakaz",
+    blank: () => ({
+      type: "both", date: todayIso(), judge: "", agencies: DEFAULT_AGENCIES,
+      name: "", ssn: "", dob: "", address: "",
+      evidence: [{ text: "" }],
+      witnesses: [{ name: "", ssn: "", statement: "" }],
+      other: "Brak",
+      hours: "48",
+      scopeHome: true, scopeProperty: true, scopeVehicles: true,
+      extraScope: [],
+    }),
+    demo: () => ({
+      type: "both", date: todayIso(), judge: "Harold Whitman", agencies: DEFAULT_AGENCIES,
+      name: "Dmitri Volkov", ssn: "3170", dob: "1998-03-21", address: "Apartamenty Del Perro Heights, Los Santos",
+      evidence: [
+        { text: "Nagranie z monitoringu stacji paliw LTD przy Grove Street z dnia 05.11.2026 r." },
+        { text: "Nagranie z kamery nasobnej funkcjonariusza LSPD obecnego na miejscu zdarzenia" },
+        { text: "Dokumentacja medyczna: raport z obdukcji poszkodowanego Samuela Price'a" },
+      ],
+      witnesses: [
+        { name: "Samuel Price", ssn: "5821", statement: "Rozpoznał Dmitriego Volkova jako osobę, która oddała strzały w jego kierunku na stacji paliw." },
+        { name: "Maria Lopez", ssn: "2094", statement: "Potwierdziła, że widziała napastnika uciekającego czarnym pojazdem marki Ubermacht Oracle." },
+        { name: "Kevin Walsh", ssn: "7310", statement: "Zeznał, że dzień wcześniej oskarżony groził poszkodowanemu w okolicach Mission Row." },
+      ],
+      other: "Brak",
+      hours: "48",
+      scopeHome: true, scopeProperty: true, scopeVehicles: true,
+      extraScope: [{ text: "Lokalu użytkowego przy Strawberry Avenue wskazanego przez świadka Kevina Walsha." }],
+    }),
+    form: [
+      ...PROSECUTOR_FIELDS,
+      { section: "Nakaz" },
+      { key: "type", label: "Rodzaj nakazu", type: "select",
+        options: [["both", "Przeszukania i aresztowania"], ["arrest", "Aresztowania"], ["search", "Przeszukania"]] },
+      { key: "date", label: "Data wydania", type: "date", half: true },
+      { key: "judge", label: "Sędzia", half: true },
+      { key: "agencies", label: "Organy wykonujące nakaz" },
+      { section: "Osoba objęta nakazem" },
+      { key: "name", label: "Imię i nazwisko" },
+      { key: "ssn", label: "SSN", half: true },
+      { key: "dob", label: "Data urodzenia", type: "date", half: true },
+      { key: "address", label: "Adres zamieszkania" },
+      { section: "Okoliczności wydania nakazu" },
+      { key: "evidence", label: "Materiał dowodowy", type: "list", add: "Dodaj dowód", item: [
+        { key: "text", label: "Dowód", type: "textarea", rows: 2 },
+      ] },
+      { key: "witnesses", label: "Zeznania świadków", type: "list", add: "Dodaj świadka", item: [
+        { key: "name", label: "Imię i nazwisko", span: 4 },
+        { key: "ssn", label: "SSN", span: 2 },
+        { key: "statement", label: "Treść zeznania", type: "textarea", rows: 2 },
+      ] },
+      { key: "other", label: "Pozostałe okoliczności", type: "textarea", rows: 2 },
+      { section: "Wykonanie" },
+      { key: "hours", label: "Zatrzymanie na co najmniej (h)", type: "number", half: true,
+        show: (d) => d.type !== "search" },
+      { key: "scopeHome", label: "Przeszukanie: mieszkanie / apartament", type: "checkbox", show: (d) => d.type !== "arrest" },
+      { key: "scopeProperty", label: "Przeszukanie: magazyny, garaże, nieruchomości", type: "checkbox", show: (d) => d.type !== "arrest" },
+      { key: "scopeVehicles", label: "Przeszukanie: pojazdy", type: "checkbox", show: (d) => d.type !== "arrest" },
+      { key: "extraScope", label: "Inne miejsca do przeszukania", type: "list", add: "Dodaj miejsce",
+        show: (d) => d.type !== "arrest", item: [
+          { key: "text", label: "Miejsce", type: "textarea", rows: 2 },
+        ] },
+      ...LOOK_FIELDS,
+    ],
+    render(d, c) {
+      const kind = WARRANT_TYPES[d.type] || WARRANT_TYPES.both;
+      const arrest = d.type !== "search";
+      const search = d.type !== "arrest";
+      const agencies = esc(String(d.agencies || "").trim() || DEFAULT_AGENCIES);
+
+      const evidence = filled(d.evidence, "text").map((e) => esc(e.text));
+      const witnesses = filled(d.witnesses, "name").map((w) =>
+        `<b>${esc(w.name)}</b>${String(w.ssn || "").trim() ? ` (SSN: ${esc(w.ssn)})` : ""}` +
+        `${String(w.statement || "").trim() ? `: ${esc(w.statement)}` : ""}`);
+      const circumstances = [
+        `<b>Materiał dowodowy:</b>${list(evidence) || " brak"}`,
+        `<b>Zeznania świadków:</b>${list(witnesses) || " brak"}`,
+        `<b>Pozostałe okoliczności:</b> ${val(d.other)}`,
+      ];
+
+      // What the warrant authorises, phrased per type
+      const act = arrest && search
+        ? "zatrzymania osoby wskazanej w § 1 oraz przeprowadzenia przeszukania miejsc wskazanych w § 4"
+        : arrest ? "zatrzymania osoby wskazanej w § 1" : "przeprowadzenia przeszukania miejsc wskazanych w § 4";
+
+      const scope = [
+        d.scopeHome && "Mieszkania / apartamentu należącego do osoby wskazanej w § 1.",
+        d.scopeProperty && "Wszelkich magazynów, garaży, nieruchomości komercyjnych oraz prywatnych należących lub użytkowanych przez osobę wskazaną w § 1.",
+        d.scopeVehicles && "Wszelkich pojazdów zarejestrowanych na osobę wskazaną w § 1 lub znajdujących się w jej dyspozycji.",
+        ...filled(d.extraScope, "text").map((s) => esc(s.text)),
+      ].filter(Boolean);
+
+      const execution = [
+        arrest && `Osoba wskazana w § 1 podlega zatrzymaniu przez uprawnione organy po ustaleniu jej tożsamości na okres co najmniej ${esc(String(d.hours || "48").replace(/\D/g, "") || "48")}h.`,
+        "Po wykonaniu nakazu funkcjonariusz wykonujący nakaz zobowiązany jest do sporządzenia stosownej dokumentacji potwierdzającej jego wykonanie.",
+        "Informację o wykonaniu nakazu należy przekazać do Department of Justice Of The State Of San Andreas oraz dołączyć do akt sprawy.",
+        "W przypadku niemożności wykonania nakazu funkcjonariusz zobowiązany jest do wskazania przyczyny jego niewykonania w sporządzonej dokumentacji.",
+        search && ("Niniejszy nakaz upoważnia funkcjonariuszy wykonujących nakaz do wejścia oraz przeprowadzenia pełnego przeszukania:" + (list(scope) || " " + BLANK)),
+      ].filter(Boolean);
+
+      return (
+        docHeader(kind.title, d.date) +
+        section("§1. Osoba Objęta Nakazem",
+          p(`Prokurator ${val(c.prosecutor)}, Prokurator Department of Justice Of The State Of San Andreas, niniejszym wydaje nakaz ${kind.noun} wobec:`) +
+          kv("Imię i nazwisko", d.name) +
+          kv("Social Security Number", d.ssn) +
+          kv("Data urodzenia", fmtDate(d.dob, "/")) +
+          kv("Adres zamieszkania", d.address)) +
+        section("§2. Okoliczności Wydania Nakazu", list(circumstances, true)) +
+        section("§3. Zakres Uprawnień Organów Wykonujących Nakaz", list([
+          `Niniejszy nakaz uprawnia funkcjonariuszy ${agencies} do ${act}.`,
+          `Funkcjonariusze wykonujący nakaz są uprawnieni do podjęcia czynności niezbędnych do jego skutecznego wykonania, w granicach obowiązujących przepisów.`,
+          "W przypadku uzasadnionej konieczności funkcjonariusze mogą zastosować środki przymusu przewidziane obowiązującymi przepisami prawa.",
+          "Jeżeli wykonanie nakazu wymaga przeprowadzenia dodatkowych czynności, mogą one zostać wykonane wyłącznie na podstawie właściwej podstawy prawnej lub odrębnego nakazu.",
+        ], true)) +
+        section("§4. Wykonanie Nakazu", list(execution, true)) +
+        section("§5. Okres Obowiązywania Nakazu", list([
+          "Niniejszy nakaz wchodzi w życie z chwilą jego wydania.",
+          "Nakaz pozostaje w mocy do czasu:" + list(["wykonania nakazu,", "jego uchylenia przez właściwy organ,", "wydania postanowienia o jego wygaśnięciu."]),
+          "Po wykonaniu lub uchyleniu nakazu dokument należy oznaczyć jako Rozpatrywany.",
+        ], true)) +
+        section("§6. Postanowienia Końcowe", list([
+          "Niniejszy nakaz został wydany na podstawie zgromadzonego materiału dowodowego oraz okoliczności wskazanych w niniejszym dokumencie.",
+          "Zakres wykonania nakazu ogranicza się do czynności określonych w jego treści oraz wynikających z obowiązujących przepisów prawa.",
+          `Nakaz stanowi podstawę do ${act} przez uprawnione organy.`,
+          "Wszelkie czynności wykraczające poza zakres niniejszego nakazu wymagają odrębnej podstawy prawnej.",
+          "Oryginał nakazu pozostaje w aktach właściwej sprawy.",
+        ], true)) +
+        section("Podpis",
+          p(`Prokurator: ${sig(c.prosecutor)}`, "margin:4px 0 0 0;") +
+          p(val(c.title), "margin:0 0 10px 0;font-size:9.5pt;color:#444444;") +
+          p(`Sędzia: ${sig(d.judge)}`, "margin:0;"))
+      );
+    },
+  },
+
+  // ── Umowa Sprzedaży pojazdu ──
+  sale: {
+    tab: "Umowa Sprzedaży",
+    blank: () => ({
+      date: todayIso(),
+      sellerName: "", sellerSsn: "", sellerAddress: "",
+      buyerName: "", buyerSsn: "", buyerAddress: "",
+      make: "", plate: "", vin: "",
+      payMode: "price", price: "", swapMake: "", swapPlate: "", swapExtra: "", payOther: "",
+      payTerms: DEFAULT_PAY_TERMS,
+      costs: "seller",
+    }),
+    demo: () => ({
+      date: todayIso(),
+      sellerName: "Lucy Carter", sellerSsn: "7731", sellerAddress: "Apartamenty Vespucci Boulevard, Los Santos",
+      buyerName: "Owen Mitchell", buyerSsn: "2648", buyerAddress: "Dom przy Mirror Park Boulevard, Los Santos",
+      make: "Pegassi Zentorno", plate: "7KQX2L9P", vin: "ZPG3K7N1X8LS4Q21",
+      payMode: "price", price: "245000", swapMake: "", swapPlate: "", swapExtra: "", payOther: "",
+      payTerms: DEFAULT_PAY_TERMS,
+      costs: "seller",
+    }),
+    form: [
+      { section: "Wykonawca dokumentu (zapamiętywany)" },
+      { key: "prosecutor", label: "Imię i nazwisko", common: true, half: true },
+      { key: "title", label: "Stanowisko", common: true, half: true },
+      { section: "Umowa" },
+      { key: "date", label: "Data zawarcia", type: "date", half: true },
+      { section: "Sprzedający" },
+      { key: "sellerName", label: "Imię i nazwisko" },
+      { key: "sellerSsn", label: "SSN", half: true },
+      { key: "sellerAddress", label: "Adres zamieszkania", half: true },
+      { section: "Kupujący" },
+      { key: "buyerName", label: "Imię i nazwisko" },
+      { key: "buyerSsn", label: "SSN", half: true },
+      { key: "buyerAddress", label: "Adres zamieszkania", half: true },
+      { section: "Pojazd" },
+      { key: "make", label: "Marka i model" },
+      { key: "plate", label: "Numer rejestracyjny", half: true },
+      { key: "vin", label: "Numer VIN", half: true },
+      { section: "Rozliczenie" },
+      { key: "payMode", label: "Forma rozliczenia", type: "select",
+        options: [["price", "Cena (kwota)"], ["swap", "Zamiana na inny pojazd"], ["other", "Inne (własny opis)"]] },
+      { key: "price", label: "Cena ($)", half: true, show: (d) => d.payMode === "price" },
+      { key: "swapMake", label: "Pojazd w zamian (marka i model)", show: (d) => d.payMode === "swap" },
+      { key: "swapPlate", label: "Jego nr rejestracyjny", half: true, show: (d) => d.payMode === "swap" },
+      { key: "swapExtra", label: "Dopłata ($, opcjonalnie)", half: true, show: (d) => d.payMode === "swap" },
+      { key: "payOther", label: "Opis rozliczenia", type: "textarea", rows: 3, show: (d) => d.payMode === "other" },
+      { key: "payTerms", label: "Warunki płatności", type: "textarea", rows: 2 },
+      { key: "costs", label: "Koszty urzędowe ponosi", type: "select",
+        options: [["seller", "Sprzedający"], ["buyer", "Kupujący"], ["half", "Strony po połowie"]] },
+      ...LOOK_FIELDS,
+    ],
+    render(d, c) {
+      let settlement;
+      if (d.payMode === "swap") {
+        const extra = money(d.swapExtra);
+        settlement = `Strony ustalają, że w ramach rozliczenia Kupujący przekazuje Sprzedającemu pojazd ${val(d.swapMake)} o numerze rejestracyjnym ${val(d.swapPlate)}` +
+          (extra ? ` oraz dopłatę w kwocie ${extra}.` : ".");
+      } else if (d.payMode === "other") {
+        settlement = val(d.payOther);
+      } else {
+        settlement = `Strony ustalają cenę sprzedaży pojazdu na kwotę <b>${val(money(d.price))}</b>.`;
+      }
+      const costs = {
+        seller: "Koszty urzędowe związane z zawarciem umowy ponosi Sprzedający.",
+        buyer: "Koszty urzędowe związane z zawarciem umowy ponosi Kupujący.",
+        half: "Koszty urzędowe związane z zawarciem umowy Strony ponoszą po połowie.",
+      }[d.costs] || "";
+
+      const party = (label, name, ssn, address, extra = "") =>
+        p(`<b>${label}</b>`, extra) + kv("Imię i nazwisko", name) + kv("Social Security Number", ssn) + kv("Adres zamieszkania", address);
+
+      return (
+        docHeader("Umowa Sprzedaży", d.date) +
+        section("§1. Strony Umowy",
+          party("Sprzedający", d.sellerName, d.sellerSsn, d.sellerAddress) +
+          party("Kupujący", d.buyerName, d.buyerSsn, d.buyerAddress, "margin-top:12px;")) +
+        section("§2. Przedmiot Umowy",
+          kv("Marka i model", d.make) + kv("Numer rejestracyjny", d.plate) + kv("Numer VIN", d.vin)) +
+        section("§3. Oświadczenia Sprzedającego",
+          p("Sprzedający oświadcza, że:") + list([
+            "Jest wyłącznym właścicielem pojazdu opisanego w § 2.",
+            "Pojazd jest wolny od wad prawnych oraz obciążeń na rzecz osób trzecich.",
+            "Pojazd jest wolny od ukrytych wad technicznych w zakresie jemu znanym.",
+          ], true)) +
+        section("§4. Oświadczenia Kupującego",
+          p("Kupujący oświadcza, że:") + list([
+            "Zapoznał się ze stanem technicznym pojazdu i akceptuje go w obecnym stanie.",
+            "Nie wnosi zastrzeżeń co do stanu technicznego pojazdu w chwili zawarcia umowy.",
+          ], true)) +
+        section("§5. Cena i Warunki Płatności", list([settlement, val(d.payTerms)], true)) +
+        section("§6. Przeniesienie Własności",
+          p("Z chwilą podpisania niniejszej umowy własność pojazdu przechodzi na Kupującego.")) +
+        section("§7. Dokumentacja i Koszty", list([
+          "Sprzedający zobowiązuje się do przekazania Kupującemu wszelkiej dokumentacji związanej z pojazdem.",
+          costs,
+        ], true)) +
+        section("§8. Postanowienia Końcowe", list([
+          "Umowę sporządzono w dwóch jednobrzmiących egzemplarzach, po jednym dla każdej ze stron.",
+          "W sprawach nieuregulowanych zastosowanie mają przepisy prawa powszechnie obowiązującego.",
+        ], true)) +
+        section("Podpisy",
+          p(`Sprzedający: ${sig(d.sellerName)}`, "margin:4px 0 2px 0;") +
+          p(`Kupujący: ${sig(d.buyerName)}`, "margin:0 0 2px 0;") +
+          p(`Wykonawca dokumentu: ${sig(c.prosecutor)}`, "margin:0;") +
+          p(val(c.title), "font-size:9.5pt;color:#444444;"))
+      );
+    },
+  },
+};
+
+const COMMON_DEFAULTS = {
+  prosecutor: "",
+  title: "Prokurator Department of Justice",
+  codeName: "Penal Code",
+  font: "arial",
+};
+
+const AUTO = { caseNo: () => autoCaseNo(state.indictment) };
+
+// ── State + persistence ────────────────────────────────────────────
+function loadState() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) {}
+  const s = { doc: "indictment", common: { ...COMMON_DEFAULTS, ...(saved?.common || {}) } };
+  for (const id of Object.keys(DOCS)) s[id] = { ...DOCS[id].blank(), ...(saved?.[id] || {}) };
+  if (saved && DOCS[saved.doc]) s.doc = saved.doc;
+  return s;
+}
+
+function saveState() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+let state = loadState();
+
+const getPath = (path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), state);
+function setPath(path, value) {
+  const keys = path.split(".");
+  const last = keys.pop();
+  keys.reduce((o, k) => o[k], state)[last] = value;
+}
+
+// ── Form rendering ─────────────────────────────────────────────────
+const INPUT =
+  "w-full rounded-lg border border-l-line bg-l-field px-3 py-2 text-sm text-ink placeholder:text-l-muted/60 " +
+  "transition focus:border-l-accent focus:outline-none focus:ring-2 focus:ring-l-accent/25 " +
+  "dark:border-line dark:bg-field dark:text-white dark:placeholder:text-white/35 dark:focus:border-gold dark:focus:ring-gold/30";
+const LABEL = "mb-1 block text-xs font-medium text-l-muted dark:text-white/60";
+const ICON_BTN =
+  "grid h-7 w-7 place-items-center rounded-md text-l-muted transition hover:bg-l-panel-2 hover:text-ink " +
+  "disabled:pointer-events-none disabled:opacity-30 dark:text-white/50 dark:hover:bg-panel-2 dark:hover:text-white";
+const SPAN = { 1: "col-span-1", 2: "col-span-2", 3: "col-span-3", 4: "col-span-4", 5: "col-span-5", 6: "col-span-6" };
+
+let listDefs = {};
+
+function controlHtml(f, path, value) {
+  const v = value ?? "";
+  const data = `data-path="${path}"`;
+  if (f.type === "checkbox") {
+    return `<label class="flex cursor-pointer select-none items-center gap-2.5 py-1 text-sm">
+      <input type="checkbox" ${data} data-rerender class="h-4 w-4 rounded accent-l-accent dark:accent-gold" ${v ? "checked" : ""}>
+      <span>${f.label}</span></label>`;
+  }
+  let ctrl;
+  if (f.type === "select") {
+    ctrl = `<select ${data} data-rerender class="${INPUT}">` +
+      f.options.map(([o, l]) => `<option value="${o}" ${o === v ? "selected" : ""}>${l}</option>`).join("") +
+      "</select>";
+  } else if (f.type === "textarea") {
+    ctrl = `<textarea ${data} rows="${f.rows || 3}" class="${INPUT} resize-y leading-relaxed" placeholder="${esc(f.ph || "")}">${esc(v)}</textarea>`;
+  } else {
+    const extra = f.type === "number" ? 'min="0" inputmode="numeric"' : "";
+    ctrl = `<input type="${f.type || "text"}" ${data} ${f.auto ? `data-auto="${f.auto}"` : ""} ${extra}
+      value="${esc(v)}" class="${INPUT}" placeholder="${esc(f.ph || "")}">`;
+  }
+  const hint = f.hint ? `<span class="mt-1 block text-[11px] leading-snug text-l-muted/80 dark:text-white/40">${f.hint}</span>` : "";
+  return `<label class="block"><span class="${LABEL}">${f.label}</span>${ctrl}${hint}</label>`;
+}
+
+function listHtml(f, path) {
+  listDefs[path] = f;
+  const items = getPath(path) || [];
+  const rows = items.map((it, i) => `
+    <div class="rounded-xl border border-l-line bg-l-panel-2/60 p-3 dark:border-line dark:bg-panel-2/60">
+      <div class="mb-2 flex items-center justify-between">
+        <span class="text-xs font-bold text-l-accent dark:text-gold">#${i + 1}</span>
+        <span class="flex gap-0.5">
+          <button type="button" class="${ICON_BTN}" data-act="up" data-list="${path}" data-i="${i}" aria-label="Przesuń w górę" ${i === 0 ? "disabled" : ""}>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
+          <button type="button" class="${ICON_BTN}" data-act="down" data-list="${path}" data-i="${i}" aria-label="Przesuń w dół" ${i === items.length - 1 ? "disabled" : ""}>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button type="button" class="${ICON_BTN} hover:!text-red-500" data-act="remove" data-list="${path}" data-i="${i}" aria-label="Usuń">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </span>
+      </div>
+      <div class="grid grid-cols-6 gap-2">
+        ${f.item.map((sf) => `<div class="${SPAN[sf.span || 6]}">${controlHtml(sf, `${path}.${i}.${sf.key}`, it[sf.key])}</div>`).join("")}
+      </div>
+    </div>`).join("");
+
+  return `<div class="col-span-2">
+    <span class="${LABEL}">${f.label}</span>
+    <div class="space-y-2">${rows}</div>
+    <button type="button" data-act="add" data-list="${path}"
+      class="mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-l-line py-2 text-xs font-semibold text-l-accent transition hover:border-l-accent hover:bg-l-panel-2 dark:border-line dark:text-gold dark:hover:border-gold dark:hover:bg-panel-2">
+      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      ${f.add}</button>
+  </div>`;
+}
+
+function fieldHtml(f) {
+  if (f.section) {
+    return `<h3 class="col-span-2 mt-4 border-t border-l-line pt-4 text-[11px] font-bold uppercase tracking-[0.14em] text-l-accent first:mt-0 first:border-0 first:pt-0 dark:border-line dark:text-gold">${f.section}</h3>`;
+  }
+  const path = `${f.common ? "common" : state.doc}.${f.key}`;
+  if (f.type === "list") return listHtml(f, path);
+  return `<div class="${f.half ? "col-span-2 sm:col-span-1" : "col-span-2"}">${controlHtml(f, path, getPath(path))}</div>`;
+}
+
+function renderForm() {
+  listDefs = {};
+  const d = state[state.doc];
+  $("#form").innerHTML = DOCS[state.doc].form.filter((f) => !f.show || f.show(d)).map(fieldHtml).join("");
+  refreshAuto();
+}
+
+function refreshAuto() {
+  document.querySelectorAll("[data-auto]").forEach((el) => { el.placeholder = AUTO[el.dataset.auto](); });
+}
+
+// ── Tabs + preview ─────────────────────────────────────────────────
+function renderTabs() {
+  $("#tabs").innerHTML = Object.entries(DOCS).map(([id, def]) => {
+    const active = id === state.doc;
+    const cls = active
+      ? "bg-l-accent text-white shadow-sm dark:bg-gold dark:text-navy"
+      : "border border-l-line bg-l-panel text-ink hover:bg-l-panel-2 dark:border-line dark:bg-panel dark:text-white/80 dark:hover:bg-panel-2";
+    return `<button type="button" role="tab" aria-selected="${active}" data-doc="${id}"
+      class="shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition ${cls}">${def.tab}</button>`;
+  }).join("");
+}
+
+function renderDoc() {
+  $("#doc").innerHTML = DOCS[state.doc].render(state[state.doc], state.common);
+}
+
+function renderAll() {
+  renderTabs();
+  renderForm();
+  renderDoc();
+}
+
+function afterChange(rerenderForm) {
+  saveState();
+  if (rerenderForm) renderForm(); else refreshAuto();
+  renderDoc();
+}
+
+// ── Events ─────────────────────────────────────────────────────────
+const formEl = $("#form");
+
+formEl.addEventListener("input", (e) => {
+  const t = e.target;
+  if (!t.dataset.path || "rerender" in t.dataset) return;
+  setPath(t.dataset.path, t.value);
+  afterChange(false);
+});
+
+formEl.addEventListener("change", (e) => {
+  const t = e.target;
+  if (!t.dataset.path || !("rerender" in t.dataset)) return;
+  setPath(t.dataset.path, t.type === "checkbox" ? t.checked : t.value);
+  afterChange(true);
+});
+
+formEl.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn) return;
+  const path = btn.dataset.list;
+  const arr = getPath(path);
+  const i = Number(btn.dataset.i);
+  const def = listDefs[path];
+  let focusIndex = null;
+
+  switch (btn.dataset.act) {
+    case "add":
+      arr.push(Object.fromEntries(def.item.map((sf) => [sf.key, sf.type === "checkbox" ? false : ""])));
+      focusIndex = arr.length - 1;
+      break;
+    case "remove":
+      arr.splice(i, 1);
+      break;
+    case "up":
+    case "down": {
+      const j = btn.dataset.act === "up" ? i - 1 : i + 1;
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+      break;
+    }
+  }
+  afterChange(true);
+  if (focusIndex !== null) {
+    document.querySelector(`[data-path="${path}.${focusIndex}.${def.item[0].key}"]`)?.focus();
+  }
+});
+
+$("#tabs").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-doc]");
+  if (!btn || btn.dataset.doc === state.doc) return;
+  state.doc = btn.dataset.doc;
+  saveState();
+  renderAll();
+});
+
+$("#demoBtn").addEventListener("click", () => {
+  state[state.doc] = DOCS[state.doc].demo();
+  if (!String(state.common.prosecutor).trim()) state.common.prosecutor = "Victoria Hale";
+  afterChange(true);
+  toast("Wczytano przykładowe dane.");
+});
+
+$("#clearBtn").addEventListener("click", () => {
+  if (!confirm(`Wyczyścić formularz „${DOCS[state.doc].tab}"? Dane prokuratora zostaną.`)) return;
+  state[state.doc] = DOCS[state.doc].blank();
+  afterChange(true);
+});
+
+$("#printBtn").addEventListener("click", () => window.print());
+$("#copyBtn").addEventListener("click", copyDoc);
+
+$("#themeBtn").addEventListener("click", () => {
+  const dark = document.documentElement.classList.toggle("dark");
+  try { localStorage.setItem(THEME_KEY, dark ? "dark" : "light"); } catch (e) {}
+});
+
+// ── Copy to clipboard (rich HTML for Google Docs + plain text fallback) ──
+async function copyDoc() {
+  const docEl = $("#doc");
+  const html = `<meta charset="utf-8"><div>${docEl.innerHTML}</div>`;
+  const text = docEl.innerText;
+  try {
+    if (!window.ClipboardItem || !navigator.clipboard?.write) throw new Error("no async clipboard");
+    await navigator.clipboard.write([new ClipboardItem({
+      "text/html": new Blob([html], { type: "text/html" }),
+      "text/plain": new Blob([text], { type: "text/plain" }),
+    })]);
+  } catch (err) {
+    // Fallback: select the rendered document and use the legacy copy command
+    const sel = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(docEl);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    const ok = document.execCommand("copy");
+    sel.removeAllRanges();
+    if (!ok) { toast("Nie udało się skopiować. Zaznacz podgląd ręcznie i skopiuj.", true); return; }
+  }
+  toast("Skopiowano! Wklej w pustym Google Docs (Ctrl/Cmd + V).");
+}
+
+// ── Toast ──────────────────────────────────────────────────────────
+let toastTimer;
+const TOAST_BASE = $("#toast").className;
+function toast(msg, isError = false) {
+  const el = $("#toast");
+  el.textContent = msg;
+  el.className = TOAST_BASE + (isError ? " bg-red-600 text-white" : " bg-ink text-white dark:bg-gold dark:text-navy");
+  el.classList.remove("opacity-0", "translate-y-4");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.add("opacity-0", "translate-y-4"), 2600);
+}
+
+renderAll();
+</script>
+</body>
+</html>
